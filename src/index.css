@@ -1,0 +1,32 @@
+:root{
+    --cols: 10,
+    --tile-size: 30px
+}
+* {
+    box-sizing: border-box;
+  }
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--tile-size));
+  grid-gap: 0;
+  align-self: flex-start;
+  border: 1px solid black;
+    width: fit-content;
+}
+
+.game-row{
+    height: 40px;
+}
+
+.cell{
+    display: inline-block;
+    border: 1px solid black;
+    margin: 0px;
+    height: 40px;
+    width: 40px;
+}
+
+.shipCell{
+  background-color: rgb(155, 194, 181);
+}
