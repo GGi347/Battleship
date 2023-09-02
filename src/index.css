@@ -8,9 +8,8 @@
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(var(--cols), var(--tile-size));
+  grid-template-columns: repeat(10, 40px [col-start]);
   grid-gap: 0;
-  align-self: flex-start;
   border: 1px solid black;
   width: fit-content;
 }

@@ -7,6 +7,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Demo from "./pages/Demo";
 import { GameProvider } from "./contexts/GameContext";
+import Game from "./pages/Game";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
       },
 
       { path: "/resetBoard", element: <ResetBoard /> },
+
+      {
+        path: "/game",
+        element: <Game />,
+      },
     ],
   },
 ]);

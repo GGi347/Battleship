@@ -1,39 +1,30 @@
-import { useEffect, useState } from "react";
 import Gameboard from "../ui/Gameboard";
-import Ships from "../ui/Ships";
-import { getBoardWithShips } from "../features/board";
-import { getShips } from "../features/ships";
+import { useGame } from "../contexts/GameContext";
+import { useNavigate } from "react-router";
 
 function PrepareBoard() {
-  //const [ships, setShips] = useState([]);
-  const initialBoard = getBoardWithShips();
-  const [board, setBoard] = useState(initialBoard);
-  const [isRandomized, setIsRandmoized] = useState(false);
-
-  useEffect(
-    function () {
-      const newBoard = getBoardWithShips();
-      setBoard(newBoard);
-      console.table(newBoard);
-    },
-    [isRandomized]
-  );
-  console.table(board);
+  const { userBoard, dispatch } = useGame();
+  const navigate = useNavigate();
 
   function handleRandomBtn() {
-    setIsRandmoized(!isRandomized);
+    dispatch({ type: "game/setup" });
   }
-  // console.log(board);
+
+  function handlePlayBtn() {
+    dispatch({ type: "game/started" });
+    navigate("/game");
+  }
+
+  function handleResetBtn() {
+    navigate("/resetBoard");
+  }
+
   return (
     <div>
-      <Gameboard board={board} />
-      {/* {ships.map((ship, index) => (
-        <Ships key={index} numofTiles={ship} />
-      ))} */}
-
+      <Gameboard board={userBoard} />
       <button onClick={handleRandomBtn}>Randomize</button>
-      <button>Reset</button>
-      <button>Play</button>
+      <button onClick={handleResetBtn}>Reset</button>
+      <button onClick={handlePlayBtn}>Play</button>
     </div>
   );
 }

@@ -12,22 +12,13 @@ export function getBoard() {
   return board;
 }
 
-export function getBoardWithShips() {
+export function getBoardWithShips(ships) {
   const newArr = getBoard();
-  const ships = getShips();
-  console.table(ships);
   for (let ship of ships) {
     const { boardTiles, numOfTiles } = ship;
-    const { rowTiles, colTiles, rowShip, colShip } = boardTiles;
-    if (rowShip) {
-      for (let tile of colTiles) {
-        newArr[rowTiles[0]][tile] = numOfTiles;
-      }
-    }
-    if (colShip) {
-      for (let tile of rowTiles) {
-        newArr[tile][colTiles[0]] = numOfTiles;
-      }
+    const { allTiles } = boardTiles;
+    for (let tile of allTiles) {
+      newArr[tile[0]][tile[1]] = numOfTiles;
     }
   }
 
