@@ -2,41 +2,52 @@ import { DndProvider, useDrop } from "react-dnd";
 import Ships from "./Ships";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { ItemTypes } from "../features/util";
+import { useGame } from "../contexts/GameContext";
 
-const ROW_NUM = 10;
-const COL_NUM = 10;
-
-function Cell({
-  cellContent,
-  rowIndex,
-  colIndex,
-  board,
-  setBoard,
-  isComputerBoard,
-}) {
-  if (board[rowIndex][colIndex] === "") return <span className="cell" />;
+function Cell({ rowIndex, colIndex, board, isOpponentBoard }) {
+  const { handleCellClick } = useGame();
+  const isHit = board[rowIndex][colIndex].isHit;
+  const cellContent = board[rowIndex][colIndex].value;
+  if (board[rowIndex][colIndex].value === "")
+    return (
+      <span
+        onClick={
+          !isOpponentBoard
+            ? () => {
+                handleCellClick(rowIndex, colIndex);
+              }
+            : () => {}
+        }
+        className={isHit ? "hit-cell cell" : "cell"}
+      />
+    );
   const firstCellOfShip =
-    (rowIndex > 0 && !isNaN(board[rowIndex - 1][colIndex])) ||
-    (colIndex > 0 && !isNaN(board[rowIndex][colIndex - 1])) ||
+    (rowIndex > 0 && !isNaN(board[rowIndex - 1][colIndex].value)) ||
+    (colIndex > 0 && !isNaN(board[rowIndex][colIndex - 1].value)) ||
     true;
 
   return (
     <span
-      className="cell"
-      onClick={() => console.log(board[rowIndex][colIndex])}
+      onClick={
+        !isOpponentBoard
+          ? () => {
+              handleCellClick(rowIndex, colIndex);
+            }
+          : () => {}
+      }
     >
-      {!isNaN(cellContent) && firstCellOfShip && <Ships numofTiles={1} />}
+      {!isNaN(cellContent) && firstCellOfShip && (
+        <Ships numOfTiles={1} isHit={isHit}>
+          {isHit && <span>X</span>}
+        </Ships>
+      )}
     </span>
   );
 }
-function handleDrop(rowIndex, colIndex, board, cellContent, setBoard, item) {
-  console.log("item ", item);
-  board[rowIndex][colIndex] = 2;
-  setBoard(board);
-  console.table(board);
-}
 
-function Gameboard({ board, setBoard, isComputerBoard = false }) {
+function Gameboard({ isOpponentBoard = false }) {
+  const { userBoard, opponentBoard } = useGame();
+  const board = isOpponentBoard ? opponentBoard : userBoard;
   if (board.length === 0) {
     return <div>Loading</div>;
   }
@@ -47,12 +58,10 @@ function Gameboard({ board, setBoard, isComputerBoard = false }) {
     return (
       <div key={i} className="cell">
         <Cell
-          cellContent={board[rowIndex][colIndex]}
           rowIndex={rowIndex}
           colIndex={colIndex}
           board={board}
-          setBoard={setBoard}
-          isComputerBoard={isComputerBoard}
+          isOpponentBoard={isOpponentBoard}
         ></Cell>
       </div>
     );
@@ -76,3 +85,9 @@ export default Gameboard;
 // }));
 // if (board[rowIndex][colIndex] === "")
 //   return <span className="cell" ref={drop} />;
+// function handleDrop(rowIndex, colIndex, board, cellContent, setBoard, item) {
+//   console.log("item ", item);
+//   board[rowIndex][colIndex] = 2;
+//   setBoard(board);
+//   console.table(board);
+// }

@@ -5,12 +5,10 @@ import { useGame } from "../contexts/GameContext";
 function Game() {
   const navigate = useNavigate();
 
-  const { userBoard, userShips, opponentBoard, opponentShips, dispatch } =
-    useGame();
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      <Gameboard board={userBoard} />
-      <Gameboard board={opponentBoard} />
+      <Gameboard />
+      <Gameboard isOpponentBoard={true} />
       {/* <button onClick={handleRandomBtn}>Randomize</button>
     <button onClick={handleResetBtn}>Reset</button>
     <button onClick={handlePlayBtn}>Play</button> */}

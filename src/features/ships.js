@@ -1,12 +1,14 @@
 import { isObjectEmpty } from "./util";
 import { getRandomNumber } from "./util";
 
-const ships = [
-  { shipId: 1, numOfTiles: 2, color: "red", boardTiles: {} },
-  { shipId: 2, numOfTiles: 3, color: "red", boardTiles: {} },
-  { shipId: 3, numOfTiles: 4, color: "red", boardTiles: {} },
-  { shipId: 4, numOfTiles: 5, color: "red", boardTiles: {} },
-];
+function getNewShips() {
+  return [
+    { shipId: 1, numOfTiles: 2, color: "red", boardTiles: {}, hits: 0 },
+    { shipId: 2, numOfTiles: 3, color: "red", boardTiles: {}, hits: 0 },
+    { shipId: 3, numOfTiles: 4, color: "red", boardTiles: {}, hits: 0 },
+    { shipId: 4, numOfTiles: 5, color: "red", boardTiles: {}, hits: 0 },
+  ];
+}
 
 function checkForRepeatedness(prevShip, tiles) {
   for (let tile of tiles.allTiles) {
@@ -52,7 +54,7 @@ function getShipPosition(ship) {
   return tiles;
 }
 
-function setShipPosition(ship) {
+function setShipPosition(ship, ships) {
   const tiles = getShipPosition(ship);
   if (isObjectEmpty(tiles)) return;
   let repeated = false;
@@ -71,9 +73,12 @@ function setShipPosition(ship) {
 }
 
 export function getShips() {
+  const ships = getNewShips();
   for (let ship of ships) {
-    setShipPosition(ship);
+    setShipPosition(ship, ships);
   }
 
   return ships;
 }
+
+export const numOfShips = getNewShips().length;

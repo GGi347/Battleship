@@ -5,7 +5,7 @@ export function getBoard() {
   for (let i = 0; i < 10; i++) {
     const row = [];
     for (let j = 0; j < 10; j++) {
-      row.push("");
+      row.push({ isHit: false, value: "" });
     }
     board.push(row);
   }
@@ -18,7 +18,7 @@ export function getBoardWithShips(ships) {
     const { boardTiles, numOfTiles } = ship;
     const { allTiles } = boardTiles;
     for (let tile of allTiles) {
-      newArr[tile[0]][tile[1]] = numOfTiles;
+      newArr[tile[0]][tile[1]].value = numOfTiles;
     }
   }
 

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "../features/util";
+import { useGame } from "../contexts/GameContext";
 
-function Ships({ numofTiles }) {
+function Ships({ numOfTiles, isHit, children }) {
   //const [widgets, setWidgets] = useState([]);
   // const [{ isDragging, c }, drag] = useDrag(
   //   () => ({
@@ -17,9 +18,14 @@ function Ships({ numofTiles }) {
   // );
 
   return (
-    <div className="game-row ship-row">
-      {[...Array(numofTiles)].map((tile, index) => (
-        <span key={index} className="shipCell cell"></span>
+    <div className={isHit ? "hit-row game-row ship-row" : "game-row ship-row"}>
+      {[...Array(numOfTiles)].map((tile, index) => (
+        <span
+          key={index}
+          className={children ? " hit-cell cell" : " shipCell cell"}
+        >
+          {children}
+        </span>
       ))}
     </div>
   );

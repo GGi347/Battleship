@@ -3,7 +3,7 @@ import { useGame } from "../contexts/GameContext";
 import { useNavigate } from "react-router";
 
 function PrepareBoard() {
-  const { userBoard, dispatch } = useGame();
+  const { dispatch } = useGame();
   const navigate = useNavigate();
 
   function handleRandomBtn() {
@@ -21,7 +21,7 @@ function PrepareBoard() {
 
   return (
     <div>
-      <Gameboard board={userBoard} />
+      <Gameboard />
       <button onClick={handleRandomBtn}>Randomize</button>
       <button onClick={handleResetBtn}>Reset</button>
       <button onClick={handlePlayBtn}>Play</button>

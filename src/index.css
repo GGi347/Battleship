@@ -18,12 +18,20 @@
     height: 40px;
 }
 
+.hit-row{
+  border: 2px solid burlywood;
+}
+
 .cell{
     display: inline-block;
     border: 1px solid black;
     margin: 0px;
     height: 40px;
     width: 40px;
+}
+
+.hit-cell{
+  background-color: red;
 }
 
 .shipCell{
