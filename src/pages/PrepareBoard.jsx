@@ -21,7 +21,8 @@ function PrepareBoard() {
 
   return (
     <div>
-      <Gameboard />
+      <Gameboard isBoardUnclickable={true} />
+
       <button onClick={handleRandomBtn}>Randomize</button>
       <button onClick={handleResetBtn}>Reset</button>
       <button onClick={handlePlayBtn}>Play</button>

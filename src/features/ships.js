@@ -3,6 +3,7 @@ import { getRandomNumber } from "./util";
 
 function getNewShips() {
   return [
+    { shipId: 0, numOfTiles: 1, color: "red", boardTiles: {}, hits: 0 },
     { shipId: 1, numOfTiles: 2, color: "red", boardTiles: {}, hits: 0 },
     { shipId: 2, numOfTiles: 3, color: "red", boardTiles: {}, hits: 0 },
     { shipId: 3, numOfTiles: 4, color: "red", boardTiles: {}, hits: 0 },
@@ -55,6 +56,7 @@ function getShipPosition(ship) {
 }
 
 function setShipPosition(ship, ships) {
+  if (ships === undefined) return;
   const tiles = getShipPosition(ship);
   if (isObjectEmpty(tiles)) return;
   let repeated = false;
@@ -68,7 +70,7 @@ function setShipPosition(ship, ships) {
   if (!repeated && (tiles.rowShip || tiles.colShip)) {
     ship.boardTiles = tiles;
   } else {
-    setShipPosition(ship);
+    setShipPosition(ship, ships);
   }
 }
 

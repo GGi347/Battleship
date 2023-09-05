@@ -4,36 +4,149 @@
 }
 * {
     box-sizing: border-box;
+    letter-spacing: 1.1px;
+  }
+
+  body {
+      background-color: #000035;
+      color: #e0e5e5;
+     
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  #root{
+    margin: auto;
+    width: fit-content;
+  }
+
+  .game-container{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
   }
 
 .game-board {
   display: grid;
   grid-template-columns: repeat(10, 40px [col-start]);
   grid-gap: 0;
-  border: 1px solid black;
+  border: 1px solid #e0e5e5;
   width: fit-content;
+  margin: 20px;
 }
 
 .game-row{
     height: 40px;
 }
 
-.hit-row{
-  border: 2px solid burlywood;
-}
 
 .cell{
     display: inline-block;
-    border: 1px solid black;
     margin: 0px;
     height: 40px;
     width: 40px;
 }
 
-.hit-cell{
-  background-color: red;
+.noship-cell {
+  border: 1px solid #e0e5e5;
+  display: inline-block;
+  margin: 0px;
+  height: 40px;
+  width: 40px;
 }
 
-.shipCell{
-  background-color: rgb(155, 194, 181);
+.hit-ship-cell {
+  background-color: #740000;
+  border: 2px solid #e0e5e5;
+}
+
+.hit-cell{
+  background-color: black;
+  border: 2px solid #e0e5e5;
+  display: inline-block;
+    margin: 0px;
+    height: 40px;
+    width: 40px;
+}
+
+.hit-cell div, .hit-ship-cell div{
+  display: flex;
+    justify-content: center;
+   font-size: 30px;
+    align-items: center;
+  color: #e0e5e5;
+}
+
+.inactive-cell{
+  background-color: #4479e1;
+}
+
+
+.empty-cell{
+  display: inline-block;
+  border: 1px solid #e0e5e5;
+  margin: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+
+.game-ship{
+  background-color: rgba(85, 119, 255, 0.22);
+  margin: 0px;
+  display: inline-block;
+  position: relative;
+  top: calc(100% - 42px);
+  border: 4px solid #3d3d7a;
+  border-radius: 4px;
+}
+
+
+.ship-cell{
+    background-color: rgba(85, 119, 255, 0.22);
+    margin: 0px;
+    display: inline-block;
+    position: relative;
+    top: calc(100% - 42px);
+    border: 4px solid #3d3d7a;
+    border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+    color: #e0e5e5;
+    background-color: inherit;
+    border: 1px solid #e0e5e5;
+    margin: 20px;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+
+button:hover, button:active{
+  background-color: #4479e1;
+}
+
+.popup-container{
+  height: 260px;
+  width: 500px;
+  background-color: #07b1bc;
+  display: flex;
+  flex-direction: column;
+  margin: 20p;
+  padding: 20px;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.popup-container div{
+  font-size: 24px;
+  padding-bottom: 24px;
 }
