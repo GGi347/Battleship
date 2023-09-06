@@ -15,7 +15,7 @@ function Gameboard({
 
   const board = isOpponentBoard ? opponentBoard : userBoard;
   const ships = isOpponentBoard ? opponentShips : userShips;
-  console.log("Unclick ", isBoardUnclickable);
+
   if (board.length === 0) {
     return <div>Loading</div>;
   }
@@ -35,22 +35,20 @@ function Gameboard({
         firstCellOfShip =
           rowIndex === ship.boardTiles.allTiles[0][0] &&
           colIndex === ship.boardTiles.allTiles[0][1];
+        // console.log(board);
       }
 
       const isHit = board[rowIndex][colIndex].isHit;
 
       shipCell = !isNaN(cellContent) && firstCellOfShip && (
         <DraggableShips
+          shipId={ship.shipId}
           numOfTiles={ship.numOfTiles}
           isHit={isHit}
           shipTiles={ship.boardTiles}
-        >
-          {isHit && <span>&bull;</span>}
-        </DraggableShips>
+        ></DraggableShips>
       );
     }
-
-    console.log(shipCell);
 
     return (
       <div key={i} className="cell">

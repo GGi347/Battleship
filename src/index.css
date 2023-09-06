@@ -150,3 +150,8 @@ button:hover, button:active{
   font-size: 24px;
   padding-bottom: 24px;
 }
+
+.cross-text-style {
+ text-decoration-line: line-through;
+ text-decoration-thickness: 1px;
+}

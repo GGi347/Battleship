@@ -14,7 +14,7 @@ export default function EmptyCell({
     return (
       <span
         onClick={
-          !isOpponentBoard
+          isOpponentBoard
             ? () => {
                 handleCellClick(rowIndex, colIndex);
               }
@@ -38,7 +38,7 @@ export default function EmptyCell({
   return (
     <span
       onClick={
-        !isOpponentBoard
+        isOpponentBoard
           ? () => {
               handleCellClick(rowIndex, colIndex);
             }

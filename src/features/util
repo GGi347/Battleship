@@ -2,6 +2,11 @@ export function getRandomNumber() {
   return Math.floor(Math.random() * 10);
 }
 
+export function getRandomFromInterval(min, max) {
+  //min included max not included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 export function isObjectEmpty(obj) {
   if (obj === undefined) return true;
   return Object.keys(obj).length === 0;
