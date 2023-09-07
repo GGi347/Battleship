@@ -11,6 +11,10 @@ function Home() {
     navigate("/prepareBoard");
   }
 
+  function handleHowToPlayBtn() {
+    navigate("/howToPlay");
+  }
+
   useEffect(
     function () {
       dispatch({ type: "game/start" });
@@ -18,10 +22,9 @@ function Home() {
     [dispatch]
   );
   return (
-    <div>
-      <h3>Get ready to battle!</h3>
-      <button onClick={handlePlayBtn}>Play</button>
-      <button>How to Play?</button>
+    <div className="header-button-container">
+      <button onClick={handlePlayBtn}>Play 🚢</button>
+      <button onClick={handleHowToPlayBtn}>How to Play?</button>
     </div>
   );
 }

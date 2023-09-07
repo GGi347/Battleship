@@ -46,7 +46,11 @@ export default function EmptyCell({
       }
     >
       {!isNaN(cellContent) && firstCellOfShip && (
-        <GameShips numOfTiles={1} isHit={isHit}>
+        <GameShips
+          numOfTiles={1}
+          isHit={isHit}
+          isOpponentBoard={isOpponentBoard}
+        >
           {isHit && <div>&bull;</div>}
         </GameShips>
       )}

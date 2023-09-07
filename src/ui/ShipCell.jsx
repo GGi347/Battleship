@@ -15,74 +15,20 @@ export default function ShipCell({
 
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
     accept: ItemTypes.SHIPS,
-    drop: (item) => handleDrop(item),
-    // handleDrop(rowIndex, colIndex, board, cellContent, setBoard, item),
+    drop: () => ({ rowIndex, colIndex }),
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
       canDrop: !!monitor.canDrop(),
     }),
   }));
-
-  //console.log(canDrop, "can drop");
-  // if (board[rowIndex][colIndex] === "")
-  //   return <span className="cell" ref={drop} />;
-  function handleDrop(item) {
-    const shipId = item.shipId;
-
-    const ship = userShips.find((item) => item.shipId === shipId);
-
-    let isCellAvailable = true;
-    console.log("INDEX ", rowIndex, colIndex);
-
-    for (let i = 0; i < ship.numOfTiles; i++) {
-      if (ship.boardTiles.rowShip) {
-        if (colIndex > 9) {
-          isCellAvailable = false;
-          break;
-        }
-        isCellAvailable =
-          board[rowIndex][colIndex + i].value === "" ||
-          board[rowIndex][colIndex + i].value === ship.numOfTiles;
-      }
-
-      if (ship.boardTiles.colShip) {
-        if (rowIndex + ship.numOfTiles - 1 > 9) {
-          isCellAvailable = false;
-          break;
-        }
-        isCellAvailable =
-          board[rowIndex + i][colIndex].value === "" ||
-          board[rowIndex + i][colIndex].value === ship.numOfTiles;
-      }
-
-      if (!isCellAvailable) break;
-    }
-
-    if (isCellAvailable) {
-      dispatch({
-        type: "game/randomSetup",
-        payload: { rowIndex: rowIndex, colIndex: colIndex, item: ship },
-      });
-    } else {
-      console.log("FUCK)");
-    }
-  }
-
+  console.log("candrop ", canDrop);
   return (
     <span
-      // onClick={
-      //   !isOpponentBoard && !isGameOver && !isBoardUnclickable
-      //     ? () => {
-      //         handleCellClick(rowIndex, colIndex);
-      //       }
-      //     : () => {}
-      // }
       className="noship-cell"
       ref={drop}
+      style={canDrop && isOver ? { backgroundColor: "#3535b8" } : {}}
     >
       <div>{children}</div>
-
-      {/* {isHit && <div>&bull;</div>} */}
     </span>
   );
 }

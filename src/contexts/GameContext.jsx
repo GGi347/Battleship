@@ -65,7 +65,7 @@ function GameProvider({ children }) {
         }
         ship.boardTiles.allTiles = newAllTiles;
         newUserShips[ship.shipId] = ship;
-        console.log(newUserBoard);
+        console.log(newUserShips);
         // console.log("new User boadd", newUserBoard, newUserShips);
         return {
           ...state,
@@ -99,22 +99,23 @@ function GameProvider({ children }) {
             }
           }
         }
+        let rotate = false;
         if (newTiles.length > 0) {
-          let rotate = true;
+          rotate = true;
 
           for (let i = 1; i < newTiles.length; i++) {
             if (state.userBoard[newTiles[i][0]][newTiles[i][1]].value !== "") {
               rotate = false;
-              console.log(state.userShips);
+
               break;
             }
           }
-          if (rotate) {
-            ship.boardTiles.colShip = !ship.boardTiles.colShip;
-            ship.boardTiles.rowShip = !ship.boardTiles.rowShip;
+        }
+        if (rotate) {
+          ship.boardTiles.colShip = !ship.boardTiles.colShip;
+          ship.boardTiles.rowShip = !ship.boardTiles.rowShip;
 
-            ship.boardTiles.allTiles = newTiles;
-          }
+          ship.boardTiles.allTiles = newTiles;
         }
 
         const newUserShips = state.userShips;
@@ -328,7 +329,6 @@ function GameProvider({ children }) {
               opponentRow = row;
               return { opponentCol, opponentRow };
             }
-            console.log("smart ", row, col);
           }
         }
         count++;

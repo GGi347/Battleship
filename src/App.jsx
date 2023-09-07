@@ -2,10 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
 import Home from "./pages/Home";
 import PrepareBoard from "./pages/PrepareBoard";
-import ResetBoard from "./pages/ResetBoard";
+import GameInstruction from "./pages/GameInstruction";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Demo from "./pages/Demo";
 import { GameProvider } from "./contexts/GameContext";
 import Game from "./pages/Game";
 
@@ -21,12 +20,14 @@ const router = createBrowserRouter([
         path: "/prepareBoard",
         element: <PrepareBoard />,
       },
-
-      { path: "/resetBoard", element: <ResetBoard /> },
-
       {
         path: "/game",
         element: <Game />,
+      },
+
+      {
+        path: "/howToPlay",
+        element: <GameInstruction />,
       },
     ],
   },

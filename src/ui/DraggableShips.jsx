@@ -11,13 +11,18 @@ export default function DraggableShips({
   children,
 }) {
   //const [widgets, setWidgets] = useState([]);
-  const [{ isDragging, c, s, i }, drag] = useDrag(
+
+  const [{ isDragging, c, s, dropResult }, drag] = useDrag(
     () => ({
       type: ItemTypes.SHIPS,
       item: { shipId },
+      end: (item, monitor) => {
+        const dropResult = monitor.getDropResult();
+        handleDrop(dropResult);
+      },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
-        c: !!monitor.getDropResult(),
+
         s: monitor.getItem(),
       }),
     }),
@@ -36,20 +41,60 @@ export default function DraggableShips({
     width: width,
     height: height,
     backgroundColor: isDragging ? "transparent" : "",
+    borderColor: isDragging ? "#3535b8" : "",
   };
 
-  const { dispatch } = useGame();
+  const { dispatch, userShips, userBoard } = useGame();
+
+  function handleDrop(dropResult) {
+    if (!dropResult) return;
+    0;
+    const { rowIndex, colIndex } = dropResult;
+
+    const ship = userShips.find((item) => item.shipId === shipId);
+    const board = userBoard;
+
+    let isCellAvailable = true;
+
+    for (let i = 0; i < ship.numOfTiles; i++) {
+      if (ship.boardTiles.rowShip) {
+        if (colIndex > 9) {
+          isCellAvailable = false;
+          break;
+        }
+        isCellAvailable =
+          board[rowIndex][colIndex + i].value === "" ||
+          board[rowIndex][colIndex + i].value === ship.numOfTiles;
+      }
+
+      if (ship.boardTiles.colShip) {
+        if (rowIndex > 9) {
+          isCellAvailable = false;
+          break;
+        }
+        isCellAvailable =
+          board[rowIndex + i][colIndex].value === "" ||
+          board[rowIndex + i][colIndex].value === ship.numOfTiles;
+      }
+
+      if (!isCellAvailable) break;
+    }
+
+    if (isCellAvailable) {
+      dispatch({
+        type: "game/randomSetup",
+        payload: { rowIndex: rowIndex, colIndex: colIndex, item: ship },
+      });
+    } else {
+      console.log("error)");
+    }
+  }
 
   //console.log(s, "isDrag");
   function handleRotation() {
     dispatch({ type: "game/shipRotated", payload: { shipId } });
   }
   return (
-    // <div
-    //   className={isHit ? "hit-row game-row ship-row" : "game-row ship-row"}
-    //   onClick={(e) => e.preventDefault()}
-    // >
-    //   {children}
     <span
       className="ship-cell"
       onClick={handleRotation}

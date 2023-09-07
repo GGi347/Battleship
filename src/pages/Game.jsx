@@ -1,14 +1,23 @@
 import { useNavigate } from "react-router";
 import Gameboard from "../ui/Gameboard";
 import { useGame } from "../contexts/GameContext";
-import Home from "./Home";
 import Popup from "reactjs-popup";
-import { useState } from "react";
 import ShipsList from "../ui/ShipsList";
+import { useEffect } from "react";
+
 function Game() {
   const navigate = useNavigate();
 
   const { verdict, dispatch, isGameOver, userShips, opponentShips } = useGame();
+
+  useEffect(
+    function () {
+      dispatch({ type: "game/started" });
+    },
+    [dispatch]
+  );
+
+  console.log(opponentShips);
 
   function handlePlayBtn() {
     dispatch({ type: "game/restart" });

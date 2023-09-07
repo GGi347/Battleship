@@ -12,19 +12,15 @@ function PrepareBoard() {
 
   function handlePlayBtn() {
     dispatch({ type: "game/started" });
-    navigate("/game");
-  }
-
-  function handleResetBtn() {
-    navigate("/resetBoard");
+    navigate("/game", { replace: true });
   }
 
   return (
-    <div>
+    <div className="prepare-board-container">
       <Gameboard isBoardUnclickable={true} />
 
       <button onClick={handleRandomBtn}>Randomize</button>
-      <button onClick={handleResetBtn}>Reset</button>
+
       <button onClick={handlePlayBtn}>Play</button>
     </div>
   );

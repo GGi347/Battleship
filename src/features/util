@@ -17,8 +17,8 @@ export const ItemTypes = {
 };
 
 export const VERDICTS = {
-  userWon: "Congragulations! You won",
-  opponentWon: "Sorry! You lost.",
-  draw: "It's a draw!",
+  userWon: "Congragulations! You won 🙌🏽",
+  opponentWon: "Sorry! You lost 😞",
+  draw: "It's a draw 🤓",
   undecided: "",
 };

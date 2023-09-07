@@ -84,20 +84,3 @@ function Gameboard({
 }
 
 export default Gameboard;
-
-// const [{ isOver }, drop] = useDrop(() => ({
-//   accept: ItemTypes.SHIPS,
-//   drop: (item) =>
-//     handleDrop(rowIndex, colIndex, board, cellContent, setBoard, item),
-//   collect: (monitor) => ({
-//     isOver: !!monitor.isOver(),
-//   }),
-// }));
-// if (board[rowIndex][colIndex] === "")
-//   return <span className="cell" ref={drop} />;
-// function handleDrop(rowIndex, colIndex, board, cellContent, setBoard, item) {
-//   console.log("item ", item);
-//   board[rowIndex][colIndex] = 2;
-//   setBoard(board);
-//   console.table(board);
-// }
