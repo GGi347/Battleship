@@ -1,6 +1,10 @@
 <h1>BattleShip Game</h1>
 <p>Based on the classic Battleship game. It is a game of strategy and guesses.</p>
 
+
+[BS.webm](https://github.com/GGi347/Battleship/assets/48858887/82500c11-316c-43ef-a19d-b7180c58d842)
+
+
 <h2>Features</h2>
 <ol>
   <li>The placement of ships can be randomized.</li>
@@ -24,8 +28,3 @@
 ![image](https://github.com/GGi347/Battleship/assets/48858887/65e8c567-8b89-41da-8f0d-8cb558ebf8e2)
 
 ![image](https://github.com/GGi347/Battleship/assets/48858887/4f62e391-947b-4feb-ab3c-b4620cf6c2e4)
-
-
-
-https://github.com/GGi347/Battleship/assets/48858887/377c899e-53e3-420d-bfbe-32fa291aab8c
-
