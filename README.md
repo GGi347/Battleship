@@ -25,3 +25,7 @@
 
 ![image](https://github.com/GGi347/Battleship/assets/48858887/4f62e391-947b-4feb-ab3c-b4620cf6c2e4)
 
+
+
+https://github.com/GGi347/Battleship/assets/48858887/377c899e-53e3-420d-bfbe-32fa291aab8c
+
