@@ -2,7 +2,8 @@
 <p>Based on the classic Battleship game. It is a game of strategy and guesses.</p>
 
 
-[BS.webm](https://github.com/GGi347/Battleship/assets/48858887/82500c11-316c-43ef-a19d-b7180c58d842)
+[BattleShip.webm](https://github.com/GGi347/Battleship/assets/48858887/afa86eeb-32a8-4e7c-828d-e89c4ce17a3c)
+
 
 
 <h2>Features</h2>
