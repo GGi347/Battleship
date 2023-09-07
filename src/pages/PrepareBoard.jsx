@@ -17,11 +17,16 @@ function PrepareBoard() {
 
   return (
     <div className="prepare-board-container">
+      <p>
+        Move the tiles(ships) on the board to reposition them. Click on the
+        tiles(ships) to change their orientation
+      </p>
       <Gameboard isBoardUnclickable={true} />
+      <div className="button-container">
+        <button onClick={handleRandomBtn}>Randomize</button>
 
-      <button onClick={handleRandomBtn}>Randomize</button>
-
-      <button onClick={handlePlayBtn}>Play</button>
+        <button onClick={handlePlayBtn}>Play</button>
+      </div>
     </div>
   );
 }
